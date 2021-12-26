@@ -56,4 +56,12 @@ func main() {
 
 	}
 
+	//using pointers
+	// &<var name> to get pointer memory address
+	// Adding a * before a pointer variable returns the value stored in the variable being ported to
+	fmt.Println("Memory address of *course* variable is", &course)
+
+	var ptr *string = &course
+	fmt.Println("Pointing course variable at address,", ptr, "which holds this value,", *ptr)
+
 }
