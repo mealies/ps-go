@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // variables declared at package level (outside main)
 // must use var
@@ -27,7 +30,7 @@ func main() {
 
 	//within functions, you can declare vars using shorthand
 	// := means you dont need to use var keyword
-	name := "Andrew Bell"
+	name := os.Getenv("USER")
 	course := "Getting started with Kubernetes"
 
 	fmt.Println("\nHi", name, "your current course is", course)
