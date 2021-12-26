@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"reflect"
-	"strconv"
-)
+import "fmt"
 
 // variables declared at package level (outside main)
 // must use var
@@ -33,35 +29,19 @@ func main() {
 	// := means you dont need to use var keyword
 	name := "Andrew Bell"
 	course := "Getting started with Kubernetes"
-	module := "4" // set as string
-	clip := 2
-	//courseComplete := false
 
-	//show how variables are initialised to empty string or 0 (string or int)
-	fmt.Println("Name an course are set to", name, "and", course, ".")
-	fmt.Println("Module and clip are set to", module, "and", clip, ".")
+	fmt.Println("\nHi", name, "your current course is", course)
+	//to change the course var in main from the function
+	// we need to pass it as a pointer and change the original
+	//memory location, or the update func will change a copy only
+	updateCourse(&course)
+	fmt.Println("You're currently watching", course)
 
-	//using reflect.typeof to show variable type
-	fmt.Println("Name is of type", reflect.TypeOf(name))
-	fmt.Println("Module is of type", reflect.TypeOf(module))
+}
 
-	//test conversions with str & int
-	//total := module + clip
-	//fmt.Println("Module plus clip equals", total)
-
-	iModule, err := strconv.Atoi(module)
-	if err == nil {
-		total := iModule + clip
-		fmt.Println("Module plus clip equals", total)
-
-	}
-
-	//using pointers
-	// &<var name> to get pointer memory address
-	// Adding a * before a pointer variable returns the value stored in the variable being ported to
-	fmt.Println("Memory address of *course* variable is", &course)
-
-	var ptr *string = &course
-	fmt.Println("Pointing course variable at address,", ptr, "which holds this value,", *ptr)
-
+//
+func updateCourse(course *string) string {
+	*course = "Getting started with Docker"
+	fmt.Println("Updated course to", *course)
+	return *course
 }
